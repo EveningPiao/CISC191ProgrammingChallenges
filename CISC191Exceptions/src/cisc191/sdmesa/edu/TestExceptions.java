@@ -67,6 +67,7 @@ class TestExceptions
 
 		// The following statement checks that the call to setBillAmount throws an
 		// IllegalArgumentException
+		// IllegalArgumentException is a run-time exception and therefore not checked
 		assertThrows(IllegalArgumentException.class, () -> {
 			bill.setBillAmount(0);
 		});
@@ -135,6 +136,7 @@ class TestExceptions
 		assertEquals(0, account.getBalance());
 	}
 //
+<<<<<<< HEAD
 	@Test
 	void testBankAccountDepositException() throws Exception
 	{
@@ -150,6 +152,60 @@ class TestExceptions
 		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
       assertEquals(100, account.getBalance());
 	}
+=======
+//		CheckoutBill bill2 = new CheckoutBill();
+//		bill2.setBillAmount(200);
+//		// IllegalStateException is a run-time exception and therefore not checked
+//		assertThrows(IllegalStateException.class, () -> {
+//			bill2.calculateTotalBill();
+//		});
+//
+//		CheckoutBill bill3 = new CheckoutBill();
+//		bill3.setTipPercent(20);
+//		assertThrows(IllegalStateException.class, () -> {
+//			bill3.calculateTotalBill();
+//		});
+//	}
+//
+//	@Test
+//	void testMain()
+//	{
+//      // main never allow the program to crash, no matter which Exception is thrown
+//		assertDoesNotThrow(() -> {
+//			CheckoutBill.main(null);
+//		});
+//	}
+//
+//	@Test
+//	void testBankAccountDepositWithdraw() throws Exception
+//	{
+//		BankAccount account = new BankAccount();
+//		account.deposit(200);
+//		assertEquals(200, account.getBalance());
+//		account.withdraw(150);
+//		assertEquals(50, account.getBalance());
+//		account.deposit(200);
+//		assertEquals(250, account.getBalance());
+//		account.withdraw(250);
+//		assertEquals(0, account.getBalance());
+//	}
+//
+//	@Test
+//	void testBankAccountDepositException() throws Exception
+//	{
+//		InvalidAmountException invalidAmountException = new InvalidAmountException(123.45);
+//		// Test that invalidAmountException is-an Exception; Exceptions are checked exceptions
+//		assertTrue(invalidAmountException instanceof Exception);
+//		
+//		BankAccount account = new BankAccount();
+//		account.deposit(100);
+//		Exception exception = assertThrows(InvalidAmountException.class, () -> {
+//			account.deposit(-0.01);
+//		});
+//		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
+//      assertEquals(100, account.getBalance());
+//	}
+>>>>>>> f8008a87295e5f7f87040717483d4a4285d79235
 //
 	@Test
 	void testBankAccountWithdrawException1() throws Exception
