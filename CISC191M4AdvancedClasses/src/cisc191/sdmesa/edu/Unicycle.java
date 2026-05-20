@@ -1,41 +1,37 @@
 package cisc191.sdmesa.edu;
 
 /**
- * Lead Author(s):
- * @author 
- * @author 
- * <<add additional lead authors here, with a full first and last name>>
- * 
- * Other contributors:
- * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
- * 
+ * Lead Author(s):TianLin Zhao
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
  * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
  * <<add more references here>>
  *  
- * Version/date: 
+ * Version/date: 4/21/2026
  * 
  * Responsibilities of class:
  * A Unicycle is a Cycle with only one wheel
  */
-
- // TODO: Implement and comment all IS-A (inheritance) relationships
  
 public class Unicycle extends Cycle
 {
-	// TODO: Implement and comment HAS-A relationships separately
-	
 	/**
-	 * Purpose: 
-	 * @param string
+	 * Constructor: creates a Unicycle with the given make
+	 * @param newMake
 	 */
 	public Unicycle(String newMake)
 	{
-		// TODO Auto-generated constructor stub
 		super(newMake);
-		
 	}
-	
+
+	/**
+	 * A Unicycle has one wheel
+	 * @return 1
+	 */
+	@Override
+	public int getNumberOfWheels()
+	{
+		return 1;
+	}
 }

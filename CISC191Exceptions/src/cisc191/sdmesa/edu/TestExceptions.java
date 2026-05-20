@@ -73,83 +73,83 @@ class TestExceptions
 
 	}
 
-//	@Test
-//	void testCheckoutBillSetTipPercent()
-//	{
-//		CheckoutBill bill = new CheckoutBill();
+	@Test
+	void testCheckoutBillSetTipPercent()
+	{
+		CheckoutBill bill = new CheckoutBill();
+
+		// The following statement checks that the call to setTipPercent does not throw
+		// an Exception
+		assertDoesNotThrow(() -> {
+			bill.setTipPercent(0);
+		});
+
+		// The following statement checks that the call to setTipPercent throws an
+		// IllegalArgumentException
+		assertThrows(IllegalArgumentException.class, () -> {
+			bill.setTipPercent(-0.1);
+		});
+	}
 //
-//		// The following statement checks that the call to setTipPercent does not throw
-//		// an Exception
-//		assertDoesNotThrow(() -> {
-//			bill.setTipPercent(0);
-//		});
+	@Test
+	void testCheckoutBillCalculateTotalBill()
+	{
+		CheckoutBill bill1 = new CheckoutBill();
+		bill1.setBillAmount(200);
+		bill1.setTipPercent(20);
+		assertEquals(240, bill1.calculateTotalBill());
+
+		CheckoutBill bill2 = new CheckoutBill();
+		bill2.setBillAmount(200);
+		assertThrows(IllegalStateException.class, () -> {
+			bill2.calculateTotalBill();
+		});
+
+		CheckoutBill bill3 = new CheckoutBill();
+		bill3.setTipPercent(20);
+		assertThrows(IllegalStateException.class, () -> {
+			bill3.calculateTotalBill();
+		});
+	}
 //
-//		// The following statement checks that the call to setTipPercent throws an
-//		// IllegalArgumentException
-//		assertThrows(IllegalArgumentException.class, () -> {
-//			bill.setTipPercent(-0.1);
-//		});
-//	}
+	@Test
+	void testMain()
+	{
+      // main should not allow the program to crash
+		assertDoesNotThrow(() -> {
+			CheckoutBill.main(null);
+		});
+	}
 //
-//	@Test
-//	void testCheckoutBillCalculateTotalBill()
-//	{
-//		CheckoutBill bill1 = new CheckoutBill();
-//		bill1.setBillAmount(200);
-//		bill1.setTipPercent(20);
-//		assertEquals(240, bill1.calculateTotalBill());
+	@Test
+	void testBankAccountDepositWithdraw() throws Exception
+	{
+		BankAccount account = new BankAccount();
+		account.deposit(200);
+		assertEquals(200, account.getBalance());
+		account.withdraw(150);
+		assertEquals(50, account.getBalance());
+		account.deposit(200);
+		assertEquals(250, account.getBalance());
+		account.withdraw(250);
+		assertEquals(0, account.getBalance());
+	}
 //
-//		CheckoutBill bill2 = new CheckoutBill();
-//		bill2.setBillAmount(200);
-//		assertThrows(IllegalStateException.class, () -> {
-//			bill2.calculateTotalBill();
-//		});
-//
-//		CheckoutBill bill3 = new CheckoutBill();
-//		bill3.setTipPercent(20);
-//		assertThrows(IllegalStateException.class, () -> {
-//			bill3.calculateTotalBill();
-//		});
-//	}
-//
-//	@Test
-//	void testMain()
-//	{
-//      // main should not allow the program to crash
-//		assertDoesNotThrow(() -> {
-//			CheckoutBill.main(null);
-//		});
-//	}
-//
-//	@Test
-//	void testBankAccountDepositWithdraw() throws Exception
-//	{
-//		BankAccount account = new BankAccount();
-//		account.deposit(200);
-//		assertEquals(200, account.getBalance());
-//		account.withdraw(150);
-//		assertEquals(50, account.getBalance());
-//		account.deposit(200);
-//		assertEquals(250, account.getBalance());
-//		account.withdraw(250);
-//		assertEquals(0, account.getBalance());
-//	}
-//
-//	@Test
-//	void testBankAccountDepositException() throws Exception
-//	{
-//		InvalidAmountException invalidAmountException = new InvalidAmountException(123.45);
-//		// Test that invalidAmountException is-an Exception
-//		assertTrue(invalidAmountException instanceof Exception);
-//		
-//		BankAccount account = new BankAccount();
-//		account.deposit(100);
-//		Exception exception = assertThrows(InvalidAmountException.class, () -> {
-//			account.deposit(-0.01);
-//		});
-//		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
-//      assertEquals(100, account.getBalance());
-//	}
+	@Test
+	void testBankAccountDepositException() throws Exception
+	{
+		InvalidAmountException invalidAmountException = new InvalidAmountException(123.45);
+		// Test that invalidAmountException is-an Exception
+		assertTrue(invalidAmountException instanceof Exception);
+		
+		BankAccount account = new BankAccount();
+		account.deposit(100);
+		Exception exception = assertThrows(InvalidAmountException.class, () -> {
+		account.deposit(-0.01);
+		});
+		assertEquals("Negative amount: $-0.01 is not allowed", exception.getMessage());
+      assertEquals(100, account.getBalance());
+	}
 //
 	@Test
 	void testBankAccountWithdrawException1() throws Exception
@@ -162,44 +162,44 @@ class TestExceptions
 		assertEquals("Negative amount: $-0.02 is not allowed", exception.getMessage());
 		assertEquals(200, account.getBalance());
 	}
+
+	@Test
+	void testBankAccountWithdrawException2() throws Exception
+	{
+		InsufficientFundsException insufficientFundsException = new InsufficientFundsException(1.11, 1.12);
+		// Test that insufficientFundsException is-an Exception
+		assertTrue(insufficientFundsException instanceof Exception);
+	
+		BankAccount account = new BankAccount();
+		account.deposit(299.98);
+		Exception exception2 = assertThrows(InsufficientFundsException.class, () -> {
+			// Try to withdraw more than balance
+			account.withdraw(299.99);
+		});
+		assertEquals("Withdrawing amount: $299.99 that is larger than balance: $299.98 is not allowed",
+							exception2.getMessage());
+       assertEquals(299.98, account.getBalance());
+	}
 //
-//	@Test
-//	void testBankAccountWithdrawException2() throws Exception
-//	{
-//		InsufficientFundsException insufficientFundsException = new InsufficientFundsException(1.11, 1.12);
-//		// Test that insufficientFundsException is-an Exception
-//		assertTrue(insufficientFundsException instanceof Exception);
-//	
-//		BankAccount account = new BankAccount();
-//		account.deposit(299.98);
-//		Exception exception2 = assertThrows(InsufficientFundsException.class, () -> {
-//			// Try to withdraw more than balance
-//			account.withdraw(299.99);
-//		});
-//		assertEquals("Withdrawing amount: $299.99 that is larger than balance: $299.98 is not allowed",
-//							exception2.getMessage());
-//       assertEquals(299.98, account.getBalance());
-//	}
-//
-//	@Test
-//	void testWithdrawAsMuchPossible() throws Exception
-//	{
-//		BankAccount account1 = new BankAccount();
-//		account1.deposit(400);
-//		assertEquals(400, account1.withdrawAsMuchPossible(400));
-//	    assertEquals(0, account1.getBalance());
-//	
-//		BankAccount account2 = new BankAccount();
-//		account2.deposit(100);
-//		// Only withdraw as much as is available in the account
-//		// Hint: re-use withdraw
-//		assertEquals(100, account2.withdrawAsMuchPossible(200));
-//		assertEquals(0, account2.getBalance());
-//	
-//		assertThrows(InvalidAmountException.class, () -> {
-//			account2.withdrawAsMuchPossible(-0.01);
-//		});
-//		assertEquals(0, account2.getBalance());
-//	}
+	@Test
+	void testWithdrawAsMuchPossible() throws Exception
+	{
+		BankAccount account1 = new BankAccount();
+		account1.deposit(400);
+		assertEquals(400, account1.withdrawAsMuchPossible(400));
+	    assertEquals(0, account1.getBalance());
+	
+		BankAccount account2 = new BankAccount();
+		account2.deposit(100);
+		// Only withdraw as much as is available in the account
+		// Hint: re-use withdraw
+		assertEquals(100, account2.withdrawAsMuchPossible(200));
+		assertEquals(0, account2.getBalance());
+	
+		assertThrows(InvalidAmountException.class, () -> {
+			account2.withdrawAsMuchPossible(-0.01);
+		});
+		assertEquals(0, account2.getBalance());
+	}
 
 }

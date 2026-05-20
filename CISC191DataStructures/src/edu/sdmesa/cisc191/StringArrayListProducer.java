@@ -1,15 +1,6 @@
 package edu.sdmesa.cisc191;
 /**
- * Lead Author(s):
- * 
- * @author
- * @author
- *         <<add additional lead authors here, with a full first and last name>>
- * 
- * Other contributors:
- *         <<add additional contributors (mentors, tutors, friends) here, with
- *         contact information>>
- * 
+ * Lead Author(s):TianLin Zhao
  * References:
  *         Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
  *         Retrieved from
@@ -17,9 +8,9 @@ package edu.sdmesa.cisc191;
  * 
  *         <<add more references here>>
  * 
- * Version/date:
+ * Version/date: 5/5/2026
  * 
- * Responsibilities of class:
+ * Responsibilities of class: Produces (adds) String elements to an ArrayList, either at the end or at a specified index.
  * 
  */
 import java.util.ArrayList;
@@ -27,22 +18,24 @@ import java.util.ArrayList;
 public class StringArrayListProducer implements Producer<String>
 {
 	// An ArrayListConsumer has-many Strings
-	// private TODO
-
+	private ArrayList<String> strings;
+	 
 	public StringArrayListProducer(ArrayList<String> initialStrings) 
 	{
-		// TODO 
+		this.strings = initialStrings;
 	}
-
+ 
 	@Override
 	public void produce(String item)
 	{
-		// TODO Add item to collection
+		// Add item to the end of the ArrayList
+		strings.add(item);
 	}
-
+ 
 	public void produce(int index, String newString)
 	{
-		// TODO 
+		// Insert newString at the specified index in the ArrayList
+		strings.add(index, newString);
 	}
-
+	
 }

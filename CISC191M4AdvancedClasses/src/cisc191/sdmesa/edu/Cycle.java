@@ -3,102 +3,114 @@ package cisc191.sdmesa.edu;
 import java.awt.Color;
 
 /**
- * Lead Author(s):
- * @author 
- * @author 
- * <<add additional lead authors here, with a full first and last name>>
- * 
- * Other contributors:
- * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
- * 
+ * Lead Author(s):TianLin Zhao
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
  * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
  * 
  * <<add more references here>>
  *  
- * Version/date: 
+ * Version/date: 4/20/2026
  * 
- * Responsibilities of class:
+ * Responsibilities of class: Abstract superclass representing any cycle
  * 
  */
 /**
  * Only change sections that are marked with TODO
  */
 
-//TODO: Implement and comment all IS-A (inheritance) relationships
-
 public abstract class Cycle
 {
-	// TODO: Implement and comment HAS-A relationships separately
-	
-	// A cycle has a unique frame number, that is *immutable*.
-	// How are you going to make it immutable, so that it only gets one final number? 
-	// (Hint: did you see the hint?)
-	// TODO:
-	
-	
+	// Cycle make, set at construction
+	private String make;
+ 
+	// Cycle unique frame number
+	private final String frameNumber;
+ 
+	// Cycle color
+	private Color color;
+ 
+	// Static counter generate frame numbers
+	private static int nextFrameNumber = 1;
+ 
+	/**
+	 * Constructor: assigns the make and stamps a unique frame number
+	 * @param newMake the manufacturer/brand of the cycle
+	 */
 	public Cycle(String newMake)
 	{
-		// TODO
+		this.make = newMake;
+ 
+		// FrameNumber: make + auto-incremented counter 
+		this.frameNumber = newMake + nextFrameNumber;
+ 
+		// Increment so the next Cycle object gets a different number
+		nextFrameNumber++;
 	}
-
-	abstract int getNumberOfWheels();
-
+ 
 	/**
-	 * 
-	 * @return the color of the bike; can be null
+	 * @return the number of wheels this cycle has
 	 */
-	abstract Color getColor();
-
+	abstract int getNumberOfWheels();
+ 
+	/**
+	 * @return the color of the bike
+	 */
+	public Color getColor()
+	{
+		return color;
+	}
+ 
 	/**
 	 * Changes the color of the bike
-	 * 
-	 * @param newColor
+	 * @param newColor the new color to set
 	 */
-	abstract void setColor(Color newColor);
-
+	public void setColor(Color newColor)
+	{
+		this.color = newColor;
+	}
+ 
 	/**
-	 * 
 	 * @return make or brand that was set when the bike was made
 	 */
 	public String getMake()
 	{
-		// TODO
-		return "make";
+		return make;
 	}
-	
+ 
 	/**
-	 * 
-	 * @return the unique serial "number" that was stamped in the frame when the bike was made
-	 * @see https://www.eta.co.uk/bicycle-insurance/frequently-asked-questions/how-to-find-a-bicycle-frame-number/
+	 * @return the unique serial "number" stamped in the frame when the bike was made
 	 */
 	public String getFrameNumber()
 	{
-		// TODO
-		return "make12345";
+		return frameNumber;
 	}
-	
+ 
 	/**
-	 *  @return true if the frame "numbers" are the same
+	 * Two cycles are equal only if they are the exact same object (same frame number)
+	 * @return true if the frame numbers are the same
 	 */
-//	@Override
-//	public boolean equals(Object other)
-//	{
-//		// TODO: 
-//		// Hint: use instanceof
-//		// See: https://www.sitepoint.com/implement-javas-equals-method-correctly/
-//		return false;
-//	}
-	
+	@Override
+	public boolean equals(Object other)
+	{
+		if (other == null)
+		{
+			return false;
+		}
+		if (!(other instanceof Cycle))
+		{
+			return false;
+		}
+		Cycle otherCycle = (Cycle) other;
+		return this.frameNumber.equals(otherCycle.frameNumber);
+	}
+ 
 	/**
 	 * @return String describing the object, including frame number and color
 	 */
-//	@Override
-//	public String toString()
-//	{
-//		//TODO:
-//		return "Hello, I'm a Cycle";
-//	}
-
+	@Override
+	public String toString()
+	{
+		return frameNumber + " " + color;
+	}
 }

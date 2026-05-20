@@ -1,28 +1,30 @@
 package cisc191.sdmesa.edu;
 
 /**
- * Lead Author(s):
- * @author 
- * @author 
- * <<add additional lead authors here, with a full first and last name>>
- * 
- * Other contributors:
- * <<add additional contributors (mentors, tutors, friends) here, with contact information>>
- * 
+ * Lead Author(s):TianLin Zhao
  * References:
  * Morelli, R., & Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving.
  * Retrieved from https://open.umn.edu/opentextbooks/textbooks/java-java-java-object-oriented-problem-solving
- * 
- * <<add more references here>>
- *  
- * Version/date: 
- * 
+ * Version/date: 4/21/2026
  * Responsibilities of class:
- * 
+ * Defines behavior for objects that can move
  */
 /**
  */
 public interface Movable
 {
-
+	/**
+	 * @return current speed of the object
+	 */
+	int getSpeed();
+ 
+	/**
+	 * Increases speed by 1
+	 */
+	void speedUp();
+ 
+	/**
+	 * Decreases speed by 2
+	 */
+	void slowDown();
 }

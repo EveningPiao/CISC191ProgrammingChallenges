@@ -43,33 +43,33 @@ class TestGoneFishing
 		assertTrue(button instanceof JButton);
 	}
 	
-//	@Test
-//	void testGoneFishingView()
-//	{
-//		GoneFishingModel goneFishingModel = new GoneFishingModel();
-//		GoneFishingView goneFishingView = new GoneFishingView(goneFishingModel);
-//		goneFishingView.updateUI();
-//		goneFishingModel.fishAt(0, 0);
-//		goneFishingView.updateUI();
-//	    assertTrue(goneFishingView instanceof JFrame);
-//	}
+	@Test
+	void testGoneFishingView()
+	{
+		GoneFishingModel goneFishingModel = new GoneFishingModel();
+		GoneFishingView goneFishingView = new GoneFishingView(goneFishingModel);
+		goneFishingView.updateUI();
+		goneFishingModel.fishAt(0, 0);
+		goneFishingView.updateUI();
+	    assertTrue(goneFishingView instanceof JFrame);
+	}
 
-//	@Test
-//	void testGoneFishingButtonListener()
-//	{
-//		GoneFishingModel goneFishingModel = new GoneFishingModel();
-//		GoneFishingView goneFishingView = new GoneFishingView(goneFishingModel);
-//		FishingButton fishingButton = new FishingButton(1, 2);
-//		FishingButtonListener listener = new FishingButtonListener(goneFishingModel, goneFishingView, fishingButton);
-//		String buttonTextBefore = fishingButton.getText();
-//		listener.actionPerformed(null);
-//		// Button text should change
-//		assertNotEquals(buttonTextBefore, fishingButton.getText());
-//		// There should be one less tries remaining
-//		assertEquals(29, goneFishingModel.getTriesRemaining());
-//		// There should be nine or ten fish remaining depending on whether we caught anything.
-//		assertTrue(goneFishingModel.getFishRemaining() == 10 || goneFishingModel.getFishRemaining() == 9);
-//	    assertTrue(listener instanceof ActionListener);
-//	}
+	@Test
+	void testGoneFishingButtonListener()
+	{
+		GoneFishingModel goneFishingModel = new GoneFishingModel();
+		GoneFishingView goneFishingView = new GoneFishingView(goneFishingModel);
+		FishingButton fishingButton = new FishingButton(1, 2);
+		FishingButtonListener listener = new FishingButtonListener(goneFishingModel, goneFishingView, fishingButton);
+		String buttonTextBefore = fishingButton.getText();
+		listener.actionPerformed(null);
+		// Button text should change
+		assertNotEquals(buttonTextBefore, fishingButton.getText());
+		// There should be one less tries remaining
+		assertEquals(29, goneFishingModel.getTriesRemaining());
+		// There should be nine or ten fish remaining depending on whether we caught anything.
+		assertTrue(goneFishingModel.getFishRemaining() == 10 || goneFishingModel.getFishRemaining() == 9);
+	    assertTrue(listener instanceof ActionListener);
+	}
 
 }
